@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/jstutz4/to-do-list#readme",
   "dependencies": {
-    "pg": "^8.5.1"
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "request": "^2.88.2"
   }
 }
