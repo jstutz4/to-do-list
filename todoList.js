@@ -10,7 +10,7 @@ const app = express();
 'use strict';
 const request = require('request');
 var stream;
-const connnectionString = process.env.DATABASE_URL || "postgres://stockdev:stockdev@localhost:5432/stockmanger";
+const connnectionString = process.env.DATABASE_URL;
 const pool = new Pool({
     connectionString: connnectionString
 });
@@ -19,4 +19,4 @@ const pool = new Pool({
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs');
 app.use(express.static("frontend"));
-app.get('/', (req, res) => res.render("home"))
+app.get('/', (req, res) => res.render("html/home"))
