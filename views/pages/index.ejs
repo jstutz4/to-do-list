@@ -9,13 +9,13 @@
 
   <body>
     <main>
-      <section class="todo-list-ends">
-        <h1>Todo List</h1>
-      </section>
+      <% include ../partials/todolist_header.ejs %>
+
+        <% include ../partials/add_filter-options.ejs %>
+      
         <% include ../partials/todolist_item.ejs %>
-      <section class="todo-list-ends">
-        <p1>Information about the todo list will be here</p1>
-      </section>
+        
+      <% include ../partials/todolist_footer.ejs %>
     </main>
   </body>
 </html>

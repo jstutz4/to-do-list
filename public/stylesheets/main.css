@@ -10,11 +10,11 @@ body {
 }
 
 .todo-list-item {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: space-around;
+  margin-right: 3vw;
   padding-left: 3vw;
-  width: 100%;
 }
 .todo-list-item-title {
   padding-left: 15px;
