@@ -26,10 +26,43 @@ function getTodolist()
 
     httpRequest.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var obj = JSON.parse(this.responseText);
-            console.log(obj);
+            return this.responseText;
         }
     }
     httpRequest.open("GET", url, true);
     httpRequest.send();
 }
+
+function displayTodoList(rows)
+{
+
+}
+
+
+
+// {
+//     "itemid": 1,
+//     "title": "add todolist html with CSS and JS",
+//     "description": null,
+//     "status": 1
+// }, {
+//     "itemid": 2,
+//     "title": "add to the db via user request",
+//     "description": "",
+//     "status": 3
+// }, {
+//     "itemid": 3,
+//     "title": "add to the db via user request",
+//     "description": "",
+//     "status": 3
+// }, {
+//     "itemid": 4,
+//     "title": "add to the db via user request",
+//     "description": "",
+//     "status": 3
+// }, {
+//     "itemid": 5,
+//     "title": "add to the db via user request",
+//     "description": "",
+//     "status": 3
+// }

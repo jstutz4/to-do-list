@@ -1,3 +1,4 @@
+const { render } = require('ejs');
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
@@ -16,10 +17,8 @@ function addToDoItem(request, response)
   let description = (request.query.description ? request.query.description : '');
   let params = [request.query.title, 3, description ]
   
-  console.log(params)
   pool.query(sql, params, (error, result)=>{
-    console.log("results")
-    console.log(result)
+    
     if (!error)
     {
       response.json({success: true})
@@ -39,7 +38,7 @@ function getAllFromDB(request, response)
   pool.query(sql, (error, result)=>{
     if(!error)
     {
-      response.json(JSON.stringify(result.rows))
+      response.send(render('partials/todolist_items', JSON.stringify(result.rows)))
     }
     else
     {
