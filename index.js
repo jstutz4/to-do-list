@@ -12,9 +12,9 @@ const pool = new Pool({
 
 function addToDoItem(request, response)
 {
-  var sql = ("INSERT INTO todolist (title, status, description) VALUES( $1::text, $2::int, $3::text)");
+  let sql = ("INSERT INTO todolist (title, status, description) VALUES( $1::text, $2::int, $3::text)");
   let description = (request.query.description ? request.query.description : '');
-  var params = [request.query.title, 3, description ]
+  let params = [request.query.title, 3, description ]
   
   console.log(params)
   pool.query(sql, params, (error, result)=>{
@@ -30,10 +30,24 @@ function addToDoItem(request, response)
 
     }
   });
-
-
-
 }
+
+function getAllFromDB(request, response)
+{
+  let sql = ("SELECT * FROM todolist");
+
+  pool.query(sql, (error, result)=>{
+    if(!error)
+    {
+      response.json(JSON.stringify(result.rows))
+    }
+    else
+    {
+      response.json({success: false})
+    }
+  })
+}
+
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -42,4 +56,5 @@ express()
   .use(express.static("public/html"))
   .get('/', (req, res) => res.render("pages/index"))
   .get('/add', addToDoItem)
+  .get('/read', getAllFromDB)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

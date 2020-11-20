@@ -8,6 +8,26 @@ function addTask()
         if (this.readyState == 4 && this.status == 200) {
             var obj = JSON.parse(this.responseText);
             console.log(obj);
+            if(obj.success)
+            {
+                let tasklist = getTodolist();
+                console.log(tasklist)
+            }
+        }
+    }
+    httpRequest.open("GET", url, true);
+    httpRequest.send();
+}
+
+function getTodolist()
+{
+    var url = '/read';
+    var httpRequest = new XMLHttpRequest();
+
+    httpRequest.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var obj = JSON.parse(this.responseText);
+            console.log(obj);
         }
     }
     httpRequest.open("GET", url, true);
