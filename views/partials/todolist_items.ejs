@@ -15,18 +15,17 @@
 
 <% var status = ["complete", 'inprogress', 'notstarted'] %>
 
-<% for(var i=0; i < data.length; i++) { %>
-    <% let class = <%= status[data[i].status] %> %>
-    <% class = "circle " + "status-" + class %>
-    <section class="todo-list-item" id=<%= data[i].id %> >
-        <div class="<%= class %>" onclick="statusToggle(this)"></div>
-        <p class="todo-list-item-title"><%= data[i].title %></p>
-        <div class="control-buttons">
-            <input type="button" value="edit" onclick="editTask(this)">
-            <input type="button" value="delete" onclick="deleteTask(this)">
-        </div>
-    </section>
- <% } %>
+<% for(var i = 0; i < data.length; ++i) {%>
+
+    <section class="todo-list-item" id=<%=data[i].itemid%> >
+           <div class="circle status-<%=status[data[i].status-1] %>" onclick="statusToggle(this)"></div>
+           <p class="todo-list-item-title"><%= data[i].title %></p>
+           <div class="control-buttons">
+               <input type="button" value="edit" onclick="editTask(this)">
+               <input type="button" value="delete" onclick="deleteTask(this)">
+           </div>
+       </section>
+   <% } %>
 
 
  <% include ../partials/todolist_footer.ejs %>
