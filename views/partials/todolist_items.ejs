@@ -2,7 +2,7 @@
 
 <% for(var i=0; i < data.length; i++) { %>
     let class = <%= status[data[i].status] %>
-    class = "circle " + "status-" + class;
+    class = "circle " + "status-" + class
     <section class="todo-list-item" id=<%= data[i].id %>>
         <div class=<% class %> onclick="statusToggle(this)"></div>
         <p class="todo-list-item-title"><%= data[i].title %></p>
