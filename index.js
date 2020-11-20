@@ -22,11 +22,11 @@ function addToDoItem(request, response)
     console.log(result)
     if (!error)
     {
-      response.render("JSON", {success: true})
+      response.json({success: true})
     }
     else
     {
-      response.render("JSON", {success: false})
+      response.json({success: false})
 
     }
   });
