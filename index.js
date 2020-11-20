@@ -14,7 +14,7 @@ function addToDoItem(request, response)
 {
   var sql = ("INSERT INTO todolist (title, status) VALUES( $1::text, $2::int)");
   let description = (request.query.description ? request.query.description : '');
-  var params = [request.query.title, description ]
+  var params = [request.query.title, description, 3 ]
   
   console.log(params)
   pool.query(sql, params, (error, result)=>{

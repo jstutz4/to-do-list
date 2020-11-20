@@ -1,6 +1,6 @@
 function addTask()
 {
-    var url = '/add?title=add to the db via user request&description=';
+    var url = '/add?title=add to the db via user request&status=3&description=';
     console.log('url:  ' + url);
     var httpRequest = new XMLHttpRequest();
 
