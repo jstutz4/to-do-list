@@ -38,7 +38,7 @@ function getAllFromDB(request, response)
   pool.query(sql, (error, result)=>{
     if(!error)
     {
-      response.send(render('partials/todolist_items', {data: JSON.stringify(result.rows)}))
+      response.render('partials/todolist_items', {'data': JSON.stringify(result.rows)})
     }
     else
     {
