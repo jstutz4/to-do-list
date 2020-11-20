@@ -18,7 +18,8 @@ function addToDoItem(request, response)
   
   console.log(params)
   pool.query(sql, params, (error, result)=>{
-    console.log( JSON.stringify(result.rows))
+    console.log("results")
+    console.log(result)
     if (!error)
     {
       response.render(JSON, {success: true})
