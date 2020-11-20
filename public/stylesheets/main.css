@@ -15,14 +15,9 @@ body {
   justify-content: space-around;
   width: 100%;
 }
-ul {
-  list-style-type: none;
+.todo-list-item-title {
   padding-left: 15px;
   flex-grow: 1;
-}
-
-.circleMarker {
-  font-size: 20px;
 }
 
 .control-buttons {
