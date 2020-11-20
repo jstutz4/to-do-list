@@ -13,14 +13,23 @@ const pool = new Pool({
 function addToDoItem(request, response)
 {
   var sql = ("INSERT INTO todolist (title, status) VALUES( $1::text, $2::int)");
-
-  var params = [request.query]
-  console.log("query start")
-  console.log(request.query)
-  console.log(url.parse(req.url,true).query)
-  console.log("query end")
-
+  let description = (request.query.description ? request.query.description : NULL);
+  var params = [request.query.title, description ]
   
+  console.log(params)
+  pool.query(sql, params, (error, result)=>{
+    if (!error)
+    {
+      response.render(JSON, {success: true})
+    }
+    else
+    {
+      response.render(JSON, {success: false})
+
+    }
+  });
+
+
 
 }
 
