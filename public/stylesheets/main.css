@@ -13,6 +13,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  padding-left: 3vw;
   width: 100%;
 }
 .todo-list-item-title {
