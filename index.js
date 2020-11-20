@@ -12,9 +12,9 @@ const pool = new Pool({
 
 function addToDoItem(request, response)
 {
-  var sql = ("INSERT INTO todolist (title, status) VALUES( $1::text, $2::int)");
+  var sql = ("INSERT INTO todolist (title, status, description) VALUES( $1::text, $2::int, $3::text)");
   let description = (request.query.description ? request.query.description : '');
-  var params = [request.query.title, description, 3 ]
+  var params = [request.query.title, 3, description ]
   
   console.log(params)
   pool.query(sql, params, (error, result)=>{
