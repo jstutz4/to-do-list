@@ -1,10 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stutz-todo List</title>
+    <% include ../partials/header.ejs %>
+  </head>
+
+  <body>
+    <main>
+      <% include ../partials/todolist_header.ejs %>
+
+        <% include ../partials/add_filter-options.ejs %>
+
 <% var status = ["complete", 'inprogress', 'notstarted'] %>
 
 <% for(var i=0; i < data.length; i++) { %>
-    let class = <%= status[data[i].status] %>
-    class = "circle " + "status-" + class
-    <section class="todo-list-item" id=<%= data[i].id %>>
-        <div class=<% class %> onclick="statusToggle(this)"></div>
+    <% let class = <%= status[data[i].status] %> %>
+    <% class = "circle " + "status-" + class %>
+    <section class="todo-list-item" id=<%= data[i].id %> >
+        <div class="<%= class %>" onclick="statusToggle(this)"></div>
         <p class="todo-list-item-title"><%= data[i].title %></p>
         <div class="control-buttons">
             <input type="button" value="edit" onclick="editTask(this)">
@@ -12,3 +27,9 @@
         </div>
     </section>
  <% } %>
+
+
+ <% include ../partials/todolist_footer.ejs %>
+</main>
+</body>
+</html>
