@@ -26,7 +26,7 @@ function editTask(element)
 {
     console.log("add modal insert new data");
    var itemId = element.parentElement.parentElement.id;
-    document.getElementById(itemId).children[1].children[0].textContent;
+    document.getElementById(itemId).children[1].textContent;
 }
 
 function deleteTask(element)
