@@ -1,3 +1,5 @@
+import {updateStatus} from './dbcalls.js'
+
 var statusColors = ["complete", "inprogress", "notstarted"]
 function statusToggle(circle)
 {
@@ -6,12 +8,12 @@ function statusToggle(circle)
    if(strClasses.search("status-inprogress") != -1)
    {
       strClasses = strClasses.replace("status-inprogress", "status-complete");
-    //   make a call to update status
+    updateStatus(circle.parentElement.id, 1);
    }
    else if(strClasses.search("status-notstarted") != -1)
    {
     strClasses = strClasses.replace("status-notstarted", "status-inprogress");
-    //   make a call to update status
+    updateStutus(circle.parentElement.id, 2);
    }
    circle.className = strClasses;
    

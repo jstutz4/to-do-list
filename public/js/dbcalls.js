@@ -78,4 +78,22 @@ function deleteTask(button)
     console.log("remove task display none");
     button.parentElement.parentElement.style.display = "none";
 }
+
+export function updateStatus(task, status)
+{
+    url = `/updateStatus?status=${status}&task=${task}`;
+    httpRequest.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var obj = JSON.parse(this.responseText);
+            console.log(obj);
+            if(obj.success)
+            {
+                let tasklist = getTodolist();
+                console.log(tasklist)
+            }
+        }
+    }
+    httpRequest.open("GET", url, true);
+    httpRequest.send();
+}
 getTodolist();

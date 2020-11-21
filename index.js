@@ -46,7 +46,7 @@ function getAllFromDB(request, response)
     {
       response.json({success: false})
     }
-  })
+  });
 }
 
 function removeTask(request, response)
@@ -64,7 +64,25 @@ function removeTask(request, response)
       response.json({success: false})
 
     }
-  })
+  });
+}
+
+function updateStatus(request, response)
+{
+  var sql = ("UPDATE todolist set status = $1::int WHERE itemID=$2::int");
+  var params = [request.query.status, request.query.task]
+
+  pool.query(sql, params, (error, results)=>{
+    if (!error)
+    {
+      response.json({success: true})
+    }
+    else
+    {
+      response.json({success: false})
+
+    }
+  });
 }
 
 express()
@@ -76,4 +94,5 @@ express()
   .get('/add', addToDoItem)
   .get('/read', getAllFromDB)
   .get('/delete', removeTask)
+  .get('/updateStatus', updateStatus)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
