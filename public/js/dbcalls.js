@@ -41,11 +41,17 @@ function displayTodoList(data)
     var status = ["complete", 'inprogress', 'notstarted']
     var listHTML =''
     for(var i = 0; i < data.length; ++i) {
+        console.log(data.length);
+        console.log(data[i].itemid);
+        console.log(status[data[i].status-1]);
+        console.log(data[i].title);
+        
         var id = data[i].itemid;
-    
+        var status = status[data[i].status-1];
+        var title = data[i].title;
         listHTML += `<section class="todo-list-item" id="${id}" >
-               <div class="circle status-${status[data[i].status-1]}" onclick="statusToggle(this)"></div>
-               <p class="todo-list-item-title">${data[i].title }</p>
+               <div class="circle status-${status}" onclick="statusToggle(this)"></div>
+               <p class="todo-list-item-title">${title}</p>
                <div class="control-buttons">
                    <input type="button" value="edit" onclick="editTask(this)">
                    <input type="button" value="delete" onclick="deleteTask(this)">
