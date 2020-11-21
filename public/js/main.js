@@ -21,10 +21,11 @@ function statusToggle(circle)
 function createTask()
 {
     console.log("add a skeleton or modal and regenerate list")
-    var title = document.getElementsById("taskTitle")
-    var status = document.getElementsById("taskstatus").selectedIndex +1
+    var title = document.getElementById("taskTitle").value
+    var status = document.getElementById("taskStatus").selectedIndex +1
     console.log(title)
     console.log(status)
+    addTask(title, status)
 }
 
 function editTask(element)
