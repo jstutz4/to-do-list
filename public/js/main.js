@@ -63,6 +63,7 @@ function openAdd(modal) {
 
 function filter(select)
 {
+    console.log("tring " + select)
     getfilter(select.selectedIndex)
 }
 

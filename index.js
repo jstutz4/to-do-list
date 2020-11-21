@@ -102,27 +102,27 @@ function getfilter(request, response)
       else
       {
         response.json({success: false})
-        pool.query(sql, (error, result)=>{
-          if(!error)
-          {
-            console.log(JSON.stringify(result.rows))
-            response.json(result.rows)
-            // response.render('partials/todolist_items', {'data': JSON.stringify(result.rows)})
-          }
-          else
-          {
-            response.json({success: false})
-          }
-        });
       }
-    });
-  }
-  else
-  {
-    sql = ("SELECT * FROM todolist");
+      });
+    }
+    else
+    {
+      sql = ("SELECT * FROM todolist");
+      pool.query(sql, (error, result)=>{
+        if(!error)
+        {
+          console.log(JSON.stringify(result.rows))
+          response.json(result.rows)
+          // response.render('partials/todolist_items', {'data': JSON.stringify(result.rows)})
+        }
+        else
+        {
+          response.json({success: false})
+        }
+      });
+    }
   }
   
-}
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
