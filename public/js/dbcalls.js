@@ -26,7 +26,7 @@ function getTodolist()
 
     httpRequest.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var data = this.responseText;
+            var data = JSON.parse(this.responseText);
             console.log(JSON.parse(data));
             console.log(data);
             var listhtml = displayTodoList(data);
