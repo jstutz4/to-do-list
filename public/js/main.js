@@ -18,7 +18,7 @@ function statusToggle(circle)
    
 }
 
-function creatTask()
+function createTask()
 {
     console.log("add a skeleton or modal and regenerate list")
 }

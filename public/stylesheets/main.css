@@ -75,19 +75,24 @@ body {
 }
 
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none; 
+  position: fixed; 
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
+  width: 100%; 
+  height: 100%; 
+  margin-left: 5vw;
 }
 
 .modal form {
+  position: fixed;
   background-color: lightgray;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 10vh auto; 
   padding: 20px;
-  border: 10px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%; 
+}
+
+.modal fieldset {
+  display: inline-grid;
 }
