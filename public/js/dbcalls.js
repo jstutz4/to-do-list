@@ -76,6 +76,6 @@ function deleteTask(button)
     httpRequest.open("GET", url, true);
     httpRequest.send();
     console.log("remove task display none");
-    element.parentElement.parentElement.style.display = "none";
+    button.parentElement.parentElement.style.display = "none";
 }
 getTodolist();
