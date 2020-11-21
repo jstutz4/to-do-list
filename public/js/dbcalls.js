@@ -79,7 +79,7 @@ function deleteTask(button)
     button.parentElement.parentElement.style.display = "none";
 }
 
-export function updateStatus(task, status)
+function updateStatus(task, status)
 {
     url = `/updateStatus?status=${status}&task=${task}`;
     httpRequest.onreadystatechange = function () {

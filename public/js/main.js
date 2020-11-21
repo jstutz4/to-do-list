@@ -1,4 +1,3 @@
-import {updateStatus} from './dbcalls.js'
 
 var statusColors = ["complete", "inprogress", "notstarted"]
 function statusToggle(circle)
