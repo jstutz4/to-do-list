@@ -69,9 +69,9 @@ function closeModal(modal)
 
 function openEdit(task) {
     //populate
+    taskId = task
     task = document.getElementById(task)
-    taskId = task.id
-    title = task.getElementsByTagName('p')[0].textContent
+    title = task.getElementsByTagName('statustitle')[0].textContent
     status = task.getElementsByTagName('status')[0].getAttribute("data")
     status_name = task.getElementsByTagName('div')[0].classList[1]
 
@@ -79,7 +79,6 @@ function openEdit(task) {
     document.getElementById("edittaskStatus").selectedIndex = status -1
     document.getElementById("editdonebutton").data = taskId
 
-    var modal = document.getElementById("editModal");
     openAdd("editModal")
 
 }
