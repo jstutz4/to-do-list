@@ -26,13 +26,12 @@ function getTodolist()
 
     httpRequest.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var newdata = this.responseText;
             console.log(newdata);
-            var data = JSON.parse(this.responseText).data;
-            console.log("see date here");
-            console.log(data);
-            
-            document.getElementById('todolist_container').innerHTML = displayTodoList(data);
+            var data = this.responseText;
+          
+            var listhtml = displayTodoList(data);
+            console.log(listhtml);
+            document.getElementById('todolist_container').innerHTML = listhtml;
         }
     }
     httpRequest.open("GET", url, true);
