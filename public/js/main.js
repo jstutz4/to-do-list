@@ -12,7 +12,7 @@ function statusToggle(circle)
    else if(strClasses.search("status-notstarted") != -1)
    {
     strClasses = strClasses.replace("status-notstarted", "status-inprogress");
-    updateStutus(circle.parentElement.id, 2);
+    updateStatus(circle.parentElement.id, 2);
    }
    circle.className = strClasses;
    
