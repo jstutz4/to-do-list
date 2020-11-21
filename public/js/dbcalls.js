@@ -27,7 +27,9 @@ function getTodolist()
     httpRequest.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             console.log(this.responseText)
-            document.getElementById('todolist_container').innerHTML = this.responseText;
+            var data = JSON.parse(this.responseText).data
+            
+            document.getElementById('todolist_container').innerHTML = displayTodoList(data)
         }
     }
     httpRequest.open("GET", url, true);
@@ -36,7 +38,21 @@ function getTodolist()
 
 function displayTodoList(rows)
 {
-
+    var status = ["complete", 'inprogress', 'notstarted']
+    var listHTML =''
+    for(var i = 0; i < data.length; ++i) {
+        var id = data[i].itemid;
+    
+        listHTML += `<section class="todo-list-item" id="${id}" >
+               <div class="circle status-${status[data[i].status-1]}" onclick="statusToggle(this)"></div>
+               <p class="todo-list-item-title">${data[i].title }</p>
+               <div class="control-buttons">
+                   <input type="button" value="edit" onclick="editTask(this)">
+                   <input type="button" value="delete" onclick="deleteTask(this)">
+               </div>
+           </section>`
+       }
+       return listHTML
 }
 // getTodolist();
 
