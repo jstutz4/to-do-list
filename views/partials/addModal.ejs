@@ -1,5 +1,5 @@
-      <% include ../partials/todolist_header.ejs %>
 <section id="addModal" class="modal">
+      <% include ../partials/todolist_header.ejs %>
     <form>
         <label for="taskTitle">Title</label>
         <input id="taskTitle" type="text" maxlength="100">
@@ -12,5 +12,5 @@
         <button onclick="addModalClose('addModal')">Cancel</button>
         <input type="submit" value="Add Task" onclick="createTask()">
     </form>
+    <% include ../partials/todolist_footer.ejs %>
 </section>
-<% include ../partials/todolist_footer.ejs %>
