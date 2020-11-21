@@ -88,6 +88,10 @@ function editTask()
     var title = document.getElementById("edittaskTitle").value
     var status = document.getElementById("edittaskStatus").selectedIndex +1
     var task =  document.getElementById("editdonebutton").data
+    console.log(task)
+    console.log(title)
+    console.log(status)
+
     // call to db
     updateTask(task, title, status)
 

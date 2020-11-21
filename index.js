@@ -32,7 +32,7 @@ function addToDoItem(request, response)
 
 function getAllFromDB(request, response)
 {
-  let sql = ("SELECT * FROM todolist");
+  let sql = ("SELECT * FROM todolist ORDER BY itemid DESC");
 
   pool.query(sql, (error, result)=>{
     if(!error)
@@ -89,7 +89,7 @@ function getfilter(request, response)
   let sql = ''
   if (request.query.filter > 0)
   {
-    sql = ("SELECT * FROM todolist WHERE status = $1::int");
+    sql = ("SELECT * FROM todolist WHERE status = $1::int ORDER BY itemid DESC");
     params = [request.query.filter]
 
     pool.query(sql,params, (error, result)=>{
@@ -125,8 +125,10 @@ function getfilter(request, response)
 
   function updateTask(request, response)
   {
-    var sql = ("UPDATE todolist set title=$2::text set status = $3::int WHERE itemID=$1::int");
+    var sql = ("UPDATE todolist set title=$2::text, status = $3::int WHERE itemID=$1::int");
     var params = [request.query.task, request.query.title, request.query.status]
+    console.log("params")
+    console.log(params)
 
   pool.query(sql, params, (error, results)=>{
     if (!error)
