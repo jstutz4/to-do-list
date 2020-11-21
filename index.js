@@ -107,7 +107,7 @@ function getfilter(request, response)
     }
     else
     {
-      sql = ("SELECT * FROM todolist");
+      sql = ("SELECT * FROM todolist ORDER BY itemid DESC");
       pool.query(sql, (error, result)=>{
         if(!error)
         {
