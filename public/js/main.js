@@ -63,11 +63,7 @@ function openAdd(modal) {
 
 function filter(select)
 {
-    select.selectedIndex
-    if (select.selectedIndex > 0)
-    {
-        getfilter(select.selectedIndex)
-    }
+    getfilter(select.selectedIndex)
 }
 
 /***calls to the db***/

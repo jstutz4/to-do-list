@@ -86,7 +86,15 @@ function updateStatus(request, response)
 
 function getfilter(request, response)
 {
-  let sql = ("SELECT * FROM todolist WHERE status = $1::int");
+  let sql = ''
+  if (request.query.filter > 0)
+  {
+    sql = ("SELECT * FROM todolist WHERE status = $1::int");
+  }
+  else
+  {
+    sql = ("SELECT * FROM todolist");
+  }
   params = [request.query.filter]
 
   pool.query(sql,params, (error, result)=>{
