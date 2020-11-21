@@ -37,7 +37,6 @@ function getAllFromDB(request, response)
   pool.query(sql, (error, result)=>{
     if(!error)
     {
-      console.log(JSON.stringify(result.rows))
       response.json(result.rows)
       // response.render('partials/todolist_items', {'data': JSON.stringify(result.rows)})
     }
@@ -95,7 +94,6 @@ function getfilter(request, response)
     pool.query(sql,params, (error, result)=>{
       if(!error)
       {
-        console.log(JSON.stringify(result.rows))
         response.json(result.rows)
         // response.render('partials/todolist_items', {'data': JSON.stringify(result.rows)})
       }
@@ -111,7 +109,6 @@ function getfilter(request, response)
       pool.query(sql, (error, result)=>{
         if(!error)
         {
-          console.log(JSON.stringify(result.rows))
           response.json(result.rows)
           // response.render('partials/todolist_items', {'data': JSON.stringify(result.rows)})
         }
@@ -127,8 +124,6 @@ function getfilter(request, response)
   {
     var sql = ("UPDATE todolist set title=$2::text, status = $3::int WHERE itemID=$1::int");
     var params = [request.query.task, request.query.title, request.query.status]
-    console.log("params")
-    console.log(params)
 
   pool.query(sql, params, (error, results)=>{
     if (!error)
