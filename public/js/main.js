@@ -33,6 +33,8 @@ function editTask(element)
 function updateStatus(task, status)
 {
     url = `/updateStatus?status=${status}&task=${task}`;
+    
+    var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var obj = JSON.parse(this.responseText);
