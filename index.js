@@ -90,25 +90,38 @@ function getfilter(request, response)
   if (request.query.filter > 0)
   {
     sql = ("SELECT * FROM todolist WHERE status = $1::int");
+    params = [request.query.filter]
+
+    pool.query(sql,params, (error, result)=>{
+      if(!error)
+      {
+        console.log(JSON.stringify(result.rows))
+        response.json(result.rows)
+        // response.render('partials/todolist_items', {'data': JSON.stringify(result.rows)})
+      }
+      else
+      {
+        response.json({success: false})
+        pool.query(sql, (error, result)=>{
+          if(!error)
+          {
+            console.log(JSON.stringify(result.rows))
+            response.json(result.rows)
+            // response.render('partials/todolist_items', {'data': JSON.stringify(result.rows)})
+          }
+          else
+          {
+            response.json({success: false})
+          }
+        });
+      }
+    });
   }
   else
   {
     sql = ("SELECT * FROM todolist");
   }
-  params = [request.query.filter]
-
-  pool.query(sql,params, (error, result)=>{
-    if(!error)
-    {
-      console.log(JSON.stringify(result.rows))
-      response.json(result.rows)
-      // response.render('partials/todolist_items', {'data': JSON.stringify(result.rows)})
-    }
-    else
-    {
-      response.json({success: false})
-    }
-  });
+  
 }
 express()
   .use(express.static(path.join(__dirname, 'public')))
