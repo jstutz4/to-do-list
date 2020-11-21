@@ -44,7 +44,7 @@ function displayTodoList(data)
     for(var i = 0; i < data.length; ++i) {
         console.log(data.length);
         console.log(data[i].itemid);
-        console.log(status[data[i].status-1]);
+        console.log(status_list[data[i].status-1]);
         console.log(data[i].title);
         
         var id = data[i].itemid;
