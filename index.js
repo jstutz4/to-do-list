@@ -39,7 +39,8 @@ function getAllFromDB(request, response)
     if(!error)
     {
       console.log(JSON.stringify(result.rows))
-      response.render('partials/todolist_items', {'data': JSON.stringify(result.rows)})
+      response.json({'data': JSON.stringify(result.rows)})
+      // response.render('partials/todolist_items', {'data': JSON.stringify(result.rows)})
     }
     else
     {
