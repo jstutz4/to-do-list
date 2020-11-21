@@ -36,7 +36,7 @@ function getTodolist()
     httpRequest.send();
 }
 
-function displayTodoList(rows)
+function displayTodoList(data)
 {
     var status = ["complete", 'inprogress', 'notstarted']
     var listHTML =''
