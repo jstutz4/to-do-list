@@ -26,7 +26,7 @@ function getTodolist()
 
     httpRequest.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText).data;
+            var data = JSON.parse(this.responseText[0]).data;
             console.log("see date here")
             console.log(data)
             
