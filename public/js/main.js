@@ -32,7 +32,6 @@ function createTask()
 
 function editTask(element)
 {
-    console.log("add modal insert new data");
    var itemId = element.parentElement.parentElement.id;
     document.getElementById(itemId).children[1].textContent;
 }
@@ -59,6 +58,40 @@ function openAdd(modal) {
     var modal = document.getElementById(modal);
     modal.style.display = "block";
     document.getElementsByTagName("main")[0].style.opacity = "20%";
+}
+
+function closeModal(modal)
+{
+    var modal = document.getElementById(modal);
+    modal.style.display = "none";
+    document.getElementsByTagName("main")[0].style.opacity = "1000%";
+}
+
+function openEdit(task) {
+    //populate
+    task = document.getElementById(task)
+    taskId = task.id
+    title = task.getElementsByTagName('p')[0].textContent
+    status = task.getElementsByTagName('status')[0].getAttribute("data")
+    status_name = task.getElementsByTagName('div')[0].classList[1]
+
+    document.getElementById("edittaskTitle").value = title
+    document.getElementById("edittaskStatus").selectedIndex = status -1
+    document.getElementById("editdonebutton").data = taskId
+
+    var modal = document.getElementById("editModal");
+    openAdd("editModal")
+
+}
+
+function editTask()
+{
+    var title = document.getElementById("edittaskTitle").value
+    var status = document.getElementById("edittaskStatus").selectedIndex +1
+    var task =  document.getElementById("editdonebutton").data
+    // call to db
+    updateTask(task, title, status)
+
 }
 
 function filter(select)
@@ -110,13 +143,14 @@ function displayTodoList(data)
     var listHTML =''
     for(var i = 0; i < data.length; ++i) {
         var id = data[i].itemid;
-        var status = status_list[data[i].status-1];
+        var status_num = data[i].status
+        var status = status_list[status_num -1];
         var title = data[i].title;
         listHTML += `<section class="todo-list-item" id="${id}" >
-               <div class="circle status-${status}" onclick="statusToggle(this)"></div>
-               <p class="todo-list-item-title">${title}</p>
+               <status class="circle status-${status}" onclick="statusToggle(this) data=${status_num}"></status>
+               <statustitle class="todo-list-item-title">${title}</statustitle>
                <div class="control-buttons">
-                   <input type="button" value="edit" onclick="editTask(this)">
+                   <input type="button" value="edit" onclick="openEdit(${id})">
                    <input type="button" value="delete" onclick="deleteTask(this)">
                </div>
            </section>`
@@ -160,6 +194,20 @@ function getfilter(status)
     httpRequest.send();
 }
 
+
+function updateTask(task, title, status)
+{
+    var url = `/update?task=${task}&title=${title}&status=${status}`;
+    var httpRequest = new XMLHttpRequest();
+
+    httpRequest.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            getTodolist()
+        }
+    }
+    httpRequest.open("GET", url, true);
+    httpRequest.send();
+}
 getTodolist();
 
 

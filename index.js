@@ -122,6 +122,24 @@ function getfilter(request, response)
       });
     }
   }
+
+  function updateTask(request, response)
+  {
+    var sql = ("UPDATE todolist set title=$2::text set status = $3::int WHERE itemID=$1::int");
+    var params = [request.query.task, request.query.title, request.query.status]
+
+  pool.query(sql, params, (error, results)=>{
+    if (!error)
+    {
+      response.json({success: true})
+    }
+    else
+    {
+      response.json({success: false})
+
+    }
+  });
+  }
   
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -134,4 +152,5 @@ express()
   .get('/delete', removeTask)
   .get('/updateStatus', updateStatus)
   .get('/statusfilter', getfilter)
+  .get('/update', updateTask)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
