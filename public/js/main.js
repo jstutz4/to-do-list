@@ -20,11 +20,8 @@ function statusToggle(circle)
 
 function createTask()
 {
-    console.log("add a skeleton or modal and regenerate list")
     var title = document.getElementById("taskTitle").value
     var status = document.getElementById("taskStatus").selectedIndex +1
-    console.log(title)
-    console.log(status)
     addTask(title, status)
 }
 
@@ -43,11 +40,9 @@ function updateStatus(task, status)
     httpRequest.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var obj = JSON.parse(this.responseText);
-            console.log(obj);
-            if(obj.success)
+            if(!obj.success)
             {
-                let tasklist = getTodolist();
-                console.log(tasklist)
+                console.error("status update failed try again")
             }
         }
     }
@@ -72,7 +67,6 @@ function addTask(title, status)
     httpRequest.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var obj = JSON.parse(this.responseText);
-            console.log(obj);
             if(obj.success)
             {
                 // repopulate the todo list
@@ -92,9 +86,7 @@ function getTodolist()
     httpRequest.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(this.responseText);
-            console.log(data);
             var listhtml = displayTodoList(data);
-            console.log(listhtml);
             document.getElementById('todolist_container').innerHTML = listhtml;
         }
     }
@@ -107,11 +99,6 @@ function displayTodoList(data)
     var status_list = ["complete", 'inprogress', 'notstarted']
     var listHTML =''
     for(var i = 0; i < data.length; ++i) {
-        console.log(data.length);
-        console.log(data[i].itemid);
-        console.log(status_list[data[i].status-1]);
-        console.log(data[i].title);
-        
         var id = data[i].itemid;
         var status = status_list[data[i].status-1];
         var title = data[i].title;
@@ -135,13 +122,15 @@ function deleteTask(button)
     httpRequest.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             var obj = JSON.parse(this.responseText);
-            console.log(obj);
+            if(!obj.success)
+            {
+                console.error("status update failed try again")
+            }
         }
             
     }
     httpRequest.open("GET", url, true);
     httpRequest.send();
-    console.log("remove task display none");
     button.parentElement.parentElement.style.display = "none";
 }
 
