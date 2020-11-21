@@ -39,7 +39,7 @@ function getTodolist()
 
 function displayTodoList(data)
 {
-    var status = ["complete", 'inprogress', 'notstarted']
+    var status_list = ["complete", 'inprogress', 'notstarted']
     var listHTML =''
     for(var i = 0; i < data.length; ++i) {
         console.log(data.length);
@@ -48,7 +48,7 @@ function displayTodoList(data)
         console.log(data[i].title);
         
         var id = data[i].itemid;
-        var status = status[data[i].status-1];
+        var status = status_list[data[i].status-1];
         var title = data[i].title;
         listHTML += `<section class="todo-list-item" id="${id}" >
                <div class="circle status-${status}" onclick="statusToggle(this)"></div>
