@@ -146,7 +146,7 @@ function displayTodoList(data)
         var status = status_list[status_num -1];
         var title = data[i].title;
         listHTML += `<section class="todo-list-item" id="${id}" >
-               <status class="circle status-${status}" onclick="statusToggle(this) data=${status_num}"></status>
+               <status class="circle status-${status}" onclick="statusToggle(this)" data=${status_num}></status>
                <statustitle class="todo-list-item-title">${title}</statustitle>
                <div class="control-buttons">
                    <input type="button" value="edit" onclick="openEdit(${id})">
