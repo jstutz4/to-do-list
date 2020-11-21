@@ -14,6 +14,11 @@ function statusToggle(circle)
     strClasses = strClasses.replace("status-notstarted", "status-inprogress");
     updateStatus(circle.parentElement.id, 2);
    }
+   else
+   {
+    strClasses = "circle status-notstarted";
+    updateStatus(circle.parentElement.id, 3);
+   }
    circle.className = strClasses;
    
 }
@@ -56,6 +61,14 @@ function openAdd(modal) {
     document.getElementsByTagName("main")[0].style.opacity = "20%";
 }
 
+function filter(select)
+{
+    select.selectedIndex
+    if (select.selectedIndex > 0)
+    {
+        getfilter(select.selectedIndex)
+    }
+}
 
 /***calls to the db***/
 
@@ -134,6 +147,21 @@ function deleteTask(button)
     button.parentElement.parentElement.style.display = "none";
 }
 
+function getfilter(status)
+{
+    var url = `/statusfilter?filter=${status}`;
+    var httpRequest = new XMLHttpRequest();
+
+    httpRequest.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            var listhtml = displayTodoList(data);
+            document.getElementById('todolist_container').innerHTML = listhtml;
+        }
+    }
+    httpRequest.open("GET", url, true);
+    httpRequest.send();
+}
 
 getTodolist();
 

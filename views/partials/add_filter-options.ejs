@@ -1,7 +1,7 @@
 <section class="menu">
     <div onclick="openAdd('addModal')">&#43;</div>
     <label>Filter Status</label>
-    <select>
+    <select onchange="filter(this)">
         <option value="NULL" default>All</option>
         <option value="complete">Complete</option>
         <option value="inprogress">In Progress</option>

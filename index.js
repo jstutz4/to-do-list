@@ -84,6 +84,24 @@ function updateStatus(request, response)
   });
 }
 
+function getfilter(request, response)
+{
+  let sql = ("SELECT * FROM todolist WHERE status = $1::int");
+  params = [request.query.filter]
+
+  pool.query(sql,params, (error, result)=>{
+    if(!error)
+    {
+      console.log(JSON.stringify(result.rows))
+      response.json(result.rows)
+      // response.render('partials/todolist_items', {'data': JSON.stringify(result.rows)})
+    }
+    else
+    {
+      response.json({success: false})
+    }
+  });
+}
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
@@ -94,4 +112,5 @@ express()
   .get('/read', getAllFromDB)
   .get('/delete', removeTask)
   .get('/updateStatus', updateStatus)
+  .get('/statusfilter', getfilter)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
