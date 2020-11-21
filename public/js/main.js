@@ -28,9 +28,3 @@ function editTask(element)
    var itemId = element.parentElement.parentElement.id;
     document.getElementById(itemId).children[1].textContent;
 }
-
-function deleteTask(element)
-{
-    console.log("remove task display none");
-    element.parentElement.parentElement.style.display = "none";
-}

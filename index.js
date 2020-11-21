@@ -49,6 +49,23 @@ function getAllFromDB(request, response)
   })
 }
 
+function removeTask(request, response)
+{
+  var sql = ("DELETE FROM todolist WHERE itemID=$1::int");
+  var params = [request.query.task]
+
+  pool.query(sql, params, (error, result)=>{
+    if (!error)
+    {
+      response.json({success: true})
+    }
+    else
+    {
+      response.json({success: false})
+
+    }
+  })
+}
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -58,4 +75,5 @@ express()
   .get('/', (req, res) => res.render("pages/index"))
   .get('/add', addToDoItem)
   .get('/read', getAllFromDB)
+  .get('/delete', removetask)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
