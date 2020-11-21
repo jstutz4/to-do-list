@@ -95,4 +95,12 @@ body {
 
 .modal fieldset {
   display: inline-grid;
+  border: 10px solid lightgoldenrodyellow;
+  width: 90%;
+}
+
+.control-add-buttons {
+  padding-top: 7px;
+  margin-bottom: 15px;
+  text-align: right;
 }

@@ -53,4 +53,5 @@ function updateStatus(task, status)
 function openAdd(modal) {
     var modal = document.getElementById(modal);
     modal.style.display = "block";
+    document.getElementsByTagName("main").style.opacity = "20%";
 }
