@@ -1,0 +1,16 @@
+      <% include ../partials/todolist_header.ejs %>
+<section id="addModal" class="modal">
+    <form>
+        <label for="taskTitle">Title</label>
+        <input id="taskTitle" type="text" maxlength="100">
+        <label for="taskStatus">Status</label>
+        <select id=taskStatus>
+            <option value="complete">Complete</option>
+            <option value="inprogress">In Progress</option>
+            <option value="notstarted" selected>Not Started</option>
+        </select>
+        <button onclick="addModalClose('addModal')">Cancel</button>
+        <input type="submit" value="Add Task" onclick="createTask()">
+    </form>
+</section>
+<% include ../partials/todolist_footer.ejs %>
