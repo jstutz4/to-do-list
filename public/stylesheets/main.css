@@ -7,6 +7,7 @@ body {
   border-radius: 15px;
   border: 1px solid lightgoldenrodyellow;
   text-align: center;
+  min-height: 67px;
 }
 
 .todo-list-item {
